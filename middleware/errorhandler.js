@@ -1,34 +1,35 @@
 const { constants } = require("../constance")
 const errorHandler = (err , req,res,next) =>{
+    const statusCode = res.statusCode ? res.statusCode : 500;
     switch (statusCode) {
         case constants.VALIDATION_ERROR:
             res.json({ 
-                titile : "Validation Faild " , 
+                title : "Validation Faild " , 
                 message : err.message , 
                 stackTrace: err.stack
             })
             break;
         case constants.NOT_FOUND:
             res.json({ 
-                titile : "Not Found" , 
+                title : "Not Found" , 
                 message : err.message , 
                 stackTrace: err.stack
             })
         case constants.UNAUTHORIZED:
             res.json({ 
-                titile : "UN authorized" , 
+                title : "UN authorized" , 
                 message : err.message , 
                 stackTrace: err.stack
             })
         case constants.FORBIDDEN:
             res.json({ 
-                titile : "Forbidden" , 
+                title : "Forbidden" , 
                 message : err.message , 
                 stackTrace: err.stack
             })
         case constants.SERVER_ERROR:
             res.json({ 
-                titile : "Server Error" , 
+                title : "Server Error" , 
                 message : err.message , 
                 stackTrace: err.stack
             })
@@ -36,7 +37,6 @@ const errorHandler = (err , req,res,next) =>{
             console.log("No Erroe , All good!");
             break;
     }
-    const statusCode = res.statusCode ? res.statusCode : 500;
     
     
 };
